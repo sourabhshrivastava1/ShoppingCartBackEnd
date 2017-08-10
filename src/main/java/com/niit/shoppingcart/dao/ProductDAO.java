@@ -17,7 +17,7 @@ public interface ProductDAO {
 
 		// delete category by id
 
-		public boolean delete(String id);
+		public boolean delete(long id);
 
 		// delete category by category
 
@@ -25,12 +25,16 @@ public interface ProductDAO {
 
 		// get category by id
 
-		public Product getProductByID(String id);
+		public Product getProductByID(long id);
 
 		// get category by name
 		public Product getProductByName(String name);
-
-	
+		public boolean saveOrUpdate(Product product);
+		public Product get(int id);
+		
+		public void add(Product Product);
+		public Product get(String id);
+		
 
 }
 

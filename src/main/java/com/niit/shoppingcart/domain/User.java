@@ -4,7 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
+import org.hibernate.annotations.Columns;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -17,12 +21,26 @@ public class User {
 	@Id
 	private String id;
 	
-	@Column(name="name")  //if the field name and property name is different
+
+	@NotEmpty(message="User name should not be empty")
+    private String name;
 	
-	private String name;
-	private String password;
+	@Column(  unique=true, nullable=false)
+    private String Email;
+	public String getEmail(){ 
+		return Email;
+	}
+	public void setEmail(String email) {
+		this.Email = email;
+	}
 	private String contact;
 	private String role;
+	
+	
+	//@Min(5)
+	//@Max(15)
+	private String password;
+	
 	public String getId() {
 		return id;
 	}
@@ -37,7 +55,10 @@ public class User {
 	}
 	public String getPassword() {
 		return password;
+	
+	
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}

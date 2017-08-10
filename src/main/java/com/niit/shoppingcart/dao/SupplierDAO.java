@@ -15,6 +15,8 @@ public interface SupplierDAO {
 	public Supplier getSupplier(String id);
 	public boolean save(Supplier supplier);
 	public boolean update(Supplier supplier);
-	public boolean delete(Supplier supplier);
-	
+	public boolean delete(String id);
+	public boolean saveOrUpdate(Supplier supplier);
+	public Supplier get(String id);
+	public Supplier getSupplierByName(String name);
 }

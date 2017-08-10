@@ -26,13 +26,27 @@ public class SupplierTestCase {
 		public static void init()
 		{
 			AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-			context.scan("com.niit");
+			context.scan("com.niit.shoppingcart");
 			context.refresh();
 			
 			supplier = (Supplier) context.getBean("supplier");
 			
 			supplierDAO = (SupplierDAO) context.getBean("supplierDAO");
 			
+		}
+		@Test
+		public void createSupplierTestCase() {
+			 
+			   supplier.setId("1");
+			   supplier.setName("Women");
+			   supplier.setAddress("Bittan market");
+			
+			boolean flag = supplierDAO.save(supplier);
+
+			// compare what you are excepting VS what you are getting from save
+			// method
+
+			Assert.assertEquals("createSupplierTestCase", true, flag);
 		}
 		
 		 @Test
@@ -47,11 +61,11 @@ public class SupplierTestCase {
 			   
 			   Assert.assertEquals( "updateSupplierTestCase" ,true, flag);
 			   
-			   
 		   }
+		   
 		 
 		 
-		 @Test
+		/* @Test
 		   public void deleteSupplier()
 		   {
 			   supplier.setId("CG02032017");
@@ -61,7 +75,7 @@ public class SupplierTestCase {
 			   Assert.assertEquals( "deleteSupplierTestCase" ,true, flag);
 			   
 			   
-		   }
+		   }*/
 		   
 		 
 		 @Test
@@ -71,7 +85,7 @@ public class SupplierTestCase {
 			   
 			  int recordsFromDAO =  supplierDAO.list().size();
 			  
-			  assertEquals("getAllSupplierTestCase" ,7 , recordsFromDAO);
+			  assertEquals("getAllSupplierTestCase" ,2 , recordsFromDAO);
 			   
 		   }
 		   

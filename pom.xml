@@ -1,6 +1,6 @@
  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion> 
-  <groupId>com.niit.shoppingcart</groupId> 
+  <groupId>com.niit</groupId> 
   <artifactId>ShoppingCartBackEnd</artifactId> 
   <version>0.0.1-SNAPSHOT</version> 
   <packaging>jar</packaging> 
@@ -75,7 +75,9 @@
   <version>2.5</version> 
   </dependency>
  <!--  H2 DB 
-  --> 
+  -->
+  
+   
  <dependency>
   <groupId>com.h2database</groupId> 
   <artifactId>h2</artifactId> 
@@ -95,10 +97,23 @@
   </dependency>
  <!--  https://mvnrepository.com/artifact/javax.el/javax.el-api 
   --> 
+  <!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session -->
+<dependency>
+    <groupId>org.springframework.session</groupId>
+    <artifactId>spring-session</artifactId>
+    <version>1.2.2.RELEASE</version>
+</dependency>
+  
  <dependency>
   <groupId>javax.el</groupId> 
   <artifactId>javax.el-api</artifactId> 
   <version>3.0.0</version> 
   </dependency>
+  
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <version>1.2.4.RELEASE</version>
+</dependency>
   </dependencies>
   </project>

@@ -1,7 +1,6 @@
 package com.niit.shoppingcart.dao;
 
 import java.util.List;
-
 import com.niit.shoppingcart.domain.User;
 
 public interface UserDAO {
@@ -30,5 +29,12 @@ public interface UserDAO {
 
 	// get user by name
 	public User getUserByName(String name);
+
+	public boolean isValidUser(String user, String password);
+
+	
+	public Object get(String id);
+
+	public boolean delete(User user);
 
 }

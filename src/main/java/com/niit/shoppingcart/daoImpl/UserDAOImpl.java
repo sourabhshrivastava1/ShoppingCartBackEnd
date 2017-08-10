@@ -3,14 +3,13 @@ package com.niit.shoppingcart.daoImpl;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
+import com.niit.shoppingcart.domain.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.SharedSessionContract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.shoppingcart.dao.UserDAO;
-import com.niit.shoppingcart.domain.User;
 
 
 @Transactional
@@ -18,8 +17,10 @@ import com.niit.shoppingcart.domain.User;
 public class UserDAOImpl implements UserDAO {
 
 	public List<User> list() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return	sessionFactory.getCurrentSession().createQuery("from User").list();
+		
+		
 	}
 
 	@Autowired
@@ -70,33 +71,79 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public boolean validate1(String id,String password)
+	public boolean validate(String id,String password)
 	{
 		// TODO Auto-generated method stub
 		String hql="from User where id='"+id+"' and password='"+password+"'";
+		System.out.println("query 1");
 		if(getSession().createQuery(hql).uniqueResult()==null)
 		{
 			return true;
 		}
-		return false;
+		else
+		{
+			return false;
+		}
 	}
-
-		
-	
 
 	private SharedSessionContract getSession() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public User getUserByName(String name) {
+	public boolean getUserByName(User user) {
 		// TODO Auto-generated method stub
-		  return  (User) sessionFactory.getCurrentSession().createQuery("from User where name = '"+name + "'").list().get(0);
+		return true;
 	}
 
-	public boolean validate(String id, String password) {
+	public boolean isValidUser(String userID, String password) {
+		// TODO Auto-generated method stub
+		String hql="select u from User u where u.id='"+userID+"' and u.password='"+password+"'";
+		
+		
+		if(getSession().createQuery(hql).uniqueResult()==null)
+		{
+			   
+			
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+	public Object get(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean delete(User user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-}
+	public User getUserByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
+	}
+
+	
+
+
+	
+
+	
+
+		
+	
+
+	
+

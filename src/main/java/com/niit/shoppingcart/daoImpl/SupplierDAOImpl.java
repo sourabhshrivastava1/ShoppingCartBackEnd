@@ -68,7 +68,8 @@ public class SupplierDAOImpl  implements SupplierDAO{
 
 	public boolean delete(String id) {
 		try {
-			sessionFactory.getCurrentSession().delete(getCategoryByID(id));
+			
+			sessionFactory.getCurrentSession().delete(getSupplierByID(id));
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -99,7 +100,7 @@ public class SupplierDAOImpl  implements SupplierDAO{
 
 	public Supplier getSupplierByName(String name) {
 		  
-		  return  (Supplier) sessionFactory.getCurrentSession().createQuery("from Supplier where name = '"+name + "'").list().get(0);
+		  return  (Supplier) sessionFactory.getCurrentSession().createQuery("from Supplier where name = ?").setString(0, name).uniqueResult();
 			
 
 	}
@@ -115,7 +116,11 @@ public class SupplierDAOImpl  implements SupplierDAO{
 
 
 
-	public Supplier getCategoryByName(String name) {
+	
+
+
+
+	public Supplier getSupplier(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -123,7 +128,15 @@ public class SupplierDAOImpl  implements SupplierDAO{
 
 
 
-	public Supplier getSupplier(String id) {
+	public boolean saveOrUpdate(Supplier supplier) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+
+	public Supplier get(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

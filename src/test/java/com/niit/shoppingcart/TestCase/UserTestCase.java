@@ -1,5 +1,6 @@
 package com.niit.shoppingcart.TestCase;
 
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,42 +28,59 @@ public class UserTestCase {
 	{
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		//context=new AnnotationConfigApplicationContext();
-		context.scan("com.niit");
+		context.scan("com.niit.shoppingcart");
 		context.refresh();
 		user=(User)context.getBean("user");
 		userDAO=(UserDAO)context.getBean("userDAO");
 	}
   
+	
+	@Test
+	public void createUserTestCase(){
+		
+	
+	user.setId("0129");
+	user.setName("niitgniit");
+	user.setPassword("niit@123");
+	user.setEmail("sourabh.shrivastava545@gmail.com");
+	user.setContact("9998888877");
+	user.setRole("Role_Admin");
+	
+	boolean flag=userDAO.save(user);
+	Assert.assertEquals("createUserTestCase",true,flag);
+	}
+	
+	
 	@Test
 	public void setUserDetails(){
 		
 	
-	user.setId("123");
-	user.setName("niit");
-	user.setPassword("niit");
-	
+	user.setId("72");
+	user.setName("Divya");
+	user.setPassword("niit@123");
+	user.setEmail("singhis king	");
 	user.setContact("9998888877");
-	user.setRole("admin");
+	user.setRole("ROLE_USER");
 	
 	boolean flag=userDAO.save(user);
 	Assert.assertEquals("setUserDetails",true,flag);
 	}
 	
 
-	@Test
+/*	@Test
 	public void updateUserDetails(){
 		
 	
-	user.setId("124");
+	user.setId("0124");
 	user.setName("sourabh");
 	user.setPassword("niit");
-	
+	user.setEmail("sourabh.shrivastava@gmail.com");
 	user.setContact("9998888877");
-	user.setRole("admin");
+	user.setRole("ROLE_ADMIN");
 	boolean flag=userDAO.save(user);
 	Assert.assertEquals("updateUserDetails",true,flag);
 	}
-	
+
 	@Test
 	public void validateCredentialsTestCase()
 	{
@@ -70,7 +88,7 @@ public class UserTestCase {
 		
 		Assert.assertEquals("validateCredentialsTestCase",true,flag);
 	
-	}
+	}*/
 	
 	
 	

@@ -2,6 +2,8 @@ package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+
 import com.niit.shoppingcart.domain.Category;
 
 public interface CategoryDAO {
@@ -36,5 +38,13 @@ public interface CategoryDAO {
 
 	// get category by name
 	public Category getCategoryByName(String name);
+
+	public boolean saveOrUpdate(Category category);
+
+	public Category get(String id);
+
+	public boolean edit(String id);
+
+	public Logger get(int i);
 
 }

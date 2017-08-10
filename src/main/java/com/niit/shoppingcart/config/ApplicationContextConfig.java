@@ -13,14 +13,23 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.niit.shoppingcart.domain.Category;
+import com.niit.shoppingcart.domain.Checkout;
+import com.niit.shoppingcart.domain.Mycart;
+import com.niit.shoppingcart.domain.Orders;
 import com.niit.shoppingcart.domain.Product;
 import com.niit.shoppingcart.domain.Supplier;
 import com.niit.shoppingcart.domain.User;
 
+
+
+
+
+
 @Configuration
-@ComponentScan("com.niit.shopingcart")
+@ComponentScan("com.niit")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
 
@@ -29,7 +38,7 @@ public class ApplicationContextConfig {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			
-		dataSource.setUrl("jdbc:h2:~/test");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
 
 		dataSource.setDriverClassName("org.h2.Driver");
 
@@ -50,18 +59,23 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired
-	@Bean(name = "sessionFactory")
+	@Bean(name ="sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
-        sessionBuilder.addAnnotatedClass(Category.class);
-        sessionBuilder.addAnnotatedClass(Product.class);
-        sessionBuilder.addAnnotatedClass(Supplier.class);
-        sessionBuilder.addAnnotatedClass(User.class);
+		
+		sessionBuilder.addAnnotatedClass(User.class);
+		sessionBuilder.addAnnotatedClass(Category.class);
+		sessionBuilder.addAnnotatedClass(Supplier.class);
+		sessionBuilder.addAnnotatedClass(Product.class);
+		sessionBuilder.addAnnotatedClass(Mycart.class);
+		sessionBuilder.addAnnotatedClass(Checkout.class);
+		sessionBuilder.addAnnotatedClass(Orders.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 
+	
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
@@ -70,6 +84,22 @@ public class ApplicationContextConfig {
 		return transactionManager;
 	}
 
-	
-
+	 @Bean(name = "multipartResolver")
+	    public CommonsMultipartResolver multipartResolver() {
+	        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+	         
+	        // Set Max Size...
+	        // commonsMultipartResolver.setMaxUploadSize(...);
+	         
+	        return commonsMultipartResolver;
+	    }
+/* @Bean(name="springSecurityFilterChain")
+   public DelegatingFilterProxy getFilterChainProxy()
+   {
+	   DelegatingFilterProxy obj= new DelegatingFilterProxy();
+	   return obj;
+   }*/
 }
+
+
+

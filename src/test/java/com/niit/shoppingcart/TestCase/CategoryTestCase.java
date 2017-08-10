@@ -1,6 +1,6 @@
 package com.niit.shoppingcart.TestCase;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class CategoryTestCase {
 	@BeforeClass
 	public static void init() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.scan("com.niit");
+		context.scan("com.niit.shoppingcart");
 		context.refresh();
 
 		category = (Category) context.getBean("category");
@@ -35,12 +35,12 @@ public class CategoryTestCase {
 	}
 
 	// TEST CASES
-
-	@Test
+	 
+	 	@Test
 	public void createCategoryTestCase() {
-		category.setId("02032017");
-		category.setName("Women Category");
-		category.setDescription("This is Women ");
+		category.setId("06032017");
+		category.setName("Electronics Category");
+		category.setDescription("This is Eloectronics ");
 
 		boolean flag = categoryDAO.save(category);
 
@@ -48,13 +48,14 @@ public class CategoryTestCase {
 		// method
 
 		Assert.assertEquals("createCategoryTestCase", true, flag);
-
 	}
-	  @Test
+	 
+
+	@Test
 	   public void updateCategoryTestCase()
 	   {
 		   
-		   category.setId("02032017");
+		   category.setId("05032017");
 		   category.setName("new Category");
 		   category.setDescription("This is Women category");
 		   
@@ -64,8 +65,9 @@ public class CategoryTestCase {
 		   
 		   
 	   }
+
 	   
-	  @Test
+	 @Test
 	   public void deleteCategoryByIDTestCase()
 	   {
 		   
@@ -74,7 +76,7 @@ public class CategoryTestCase {
 		   Assert.assertEquals( "deleteCategoryByIDTestCase" ,true, flag);
 		   
 		   
-		   
+	   
 	   }
 	  
 	  @Test
@@ -132,4 +134,4 @@ public class CategoryTestCase {
 		   
 	   }
 	   
-}
+}  
